@@ -26,6 +26,71 @@ Common compose options
 | version 2       | Version 2 files are supported by Compose 1.6.0+            |
 +-----------------+------------------------------------------------------------+
 
+Solve "``ERROR``: No such image:"
+----------------------------------
+
+.. code-block:: console
+
+    $ docker rm $(docker ps -a -q)
+
+flask
+-----
+
+compose working directory
+
+.. code-block:: console
+
+    $ tree .
+    .
+    ├── Dockerfile
+    ├── app.py
+    ├── docker-compose.yml
+    └── requirements.txt
+
+    0 directories, 4 files
+
+app.py
+
+.. code-block:: python
+
+    from flask import Flask
+
+    app = Flask(__name__)
+
+    @app.route('/')
+    def hello():
+        return "Hello Docker Flask"
+
+    if __name__ == "__main__":
+        app.run(host="0.0.0.0", debug=True)
+
+requirements.txt
+
+.. code-block:: console
+
+    flask
+
+Dockerfile
+
+.. code-block:: console
+
+    FROM python
+    ADD . /code
+    WORKDIR /code
+    RUN pip install -U pip
+    RUN pip install -r requirements.txt
+    CMD python app.py
+
+docker-compose.yml
+
+.. code-block:: yaml
+
+    web:
+      build: . 
+      ports:
+        - "5000:5000"
+      command: python app.py
+
 flask + redis
 -------------
 
