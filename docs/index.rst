@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 2
 
    notes/docker-basic
+   notes/docker-compose
 
 
 Indices and tables
