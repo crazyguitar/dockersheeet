@@ -13,6 +13,7 @@ Contents:
 
    notes/docker-basic
    notes/docker-compose
+   notes/docker-files
 
 
 Indices and tables

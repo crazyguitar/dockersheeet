@@ -69,6 +69,27 @@ Run a background task
     $ docker logs $JOB  # show container log
     $ docker kill $JOB  # kill container job
 
+``docker run`` port forwarding
+------------------------------
+
+.. code-block:: console
+
+    # -P  Publish all exposed ports to random ports
+    $ docker run -d -P ${image} ${cmd}
+
+    # -p  Publish a container's port(s) to the host
+    $ docker run -d -p ${host_port}:${docker_port} ${image} ${cmd}
+
+
+``docker port`` check port map
+------------------------------
+
+.. code-block:: console
+
+    $ container_name="sshd"
+    $ docker port ${container_name}
+    22/tcp -> 0.0.0.0:32770
+
 ``docker ps`` check running container
 -------------------------------------
 
