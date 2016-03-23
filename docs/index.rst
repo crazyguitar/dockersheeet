@@ -14,6 +14,7 @@ Contents:
    notes/docker-basic
    notes/docker-compose
    notes/docker-files
+   notes/network-commoncli
    notes/docker-network
 
 
