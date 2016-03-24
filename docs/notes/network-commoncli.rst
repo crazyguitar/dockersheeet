@@ -144,3 +144,85 @@ show statistics for each protocol
     Icmp:
         8693034 ICMP messages received
         ...
+
+Display PID and network state
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=================  ========================================
+ option             description
+=================  ========================================
+ -p, --programs     display PID/Program name for sockets
+=================  ========================================
+
+.. code-block:: console
+
+    $ netstat -pt
+    Active Internet connections (w/o servers)
+    Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+    tcp        1      0 mvnl.csie.ntu.edu:45006 economy.canonical.:http CLOSE_WAIT  11988/python    
+    tcp        1      0 mvnl.csie.ntu.edu:59399 economy.canonical.:http CLOSE_WAIT  8635/python
+
+Display routing information
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+===============  ==========================
+ option           description
+===============  ==========================
+-r, --route       display routing table
+===============  ==========================
+
+.. code-block:: console
+
+    $ netstat -r    # same as ``route`` command
+    Kernel IP routing table
+    Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+    default         140.112.91.254  0.0.0.0         UG        0 0          0 eth0
+    140.112.91.0    *               255.255.255.0   U         0 0          0 eth0
+    link-local      *               255.255.0.0     U         0 0          0 eth0
+    169.254.95.0    *               255.255.255.0   U         0 0          0 usb0
+
+``arping`` Send ARP request to a neighbour host
+-----------------------------------------------
+
+==============  ====================================
+ option          description
+==============  ====================================
+ -I device       which ethernet device to use (eth0)
+==============  ====================================
+
+.. code-block:: console
+
+    $ arping -I eth0 140.112.91.210
+    ARPING 140.112.91.210 from 140.112.91.208 eth0
+    Unicast reply from 140.112.91.210 [5C:F3:FC:2A:80:3F]  0.754ms
+    Unicast reply from 140.112.91.210 [5C:F3:FC:2A:80:3F]  0.763ms
+    ...
+
+``dhclient`` DHCP Client
+------------------------
+
+Request a IP address from DHCP server
+
+=============  ======================
+ option         description 
+=============  ======================
+ -v --verbose   Enable verbose
+=============  ======================
+
+.. code-block:: console
+
+    $ dhclient -v eth0
+
+``ethtool`` Query or control network driver and hardware
+--------------------------------------------------------
+
+==============  ========================================
+  option         description
+==============  ========================================
+ -i, --driver     Display interface driver information
+==============  ========================================
+
+.. code-block:: console
+
+    $ ethtool eth0
+    $ ethtool -i eth0
