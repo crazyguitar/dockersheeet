@@ -226,3 +226,125 @@ Request a IP address from DHCP server
 
     $ ethtool eth0
     $ ethtool -i eth0
+
+``tcpdump`` capture packets
+----------------------------
+
+===========  ===============================
+  option      description
+===========  ===============================
+  -w          Write the raw packets to file
+  -i          Listen on interface
+===========  ===============================
+
+.. code-block:: bash
+
+    $ tcpdump -w test.pcap -i eth0
+    $ tcpdump -w dns.pcap -i eth0 dst port 53
+    $ tcpdump -w local.pcap -i eth0 host 192.168.1.43
+
+
+DNS related commands
+----------------------
+
+nslookup
+~~~~~~~~~
+
+.. code-block:: bash
+
+    $ nslookup google.com
+    Server:     192.168.1.1
+    Address:    192.168.1.1#53
+
+    Non-authoritative answer:
+    Name:   google.com
+    Address: 173.194.72.102
+    Name:   google.com
+    Address: 173.194.72.113
+    Name:   google.com
+    Address: 173.194.72.101
+    Name:   google.com
+    Address: 173.194.72.139
+    Name:   google.com
+    Address: 173.194.72.100
+    Name:   google.com
+    Address: 173.194.72.138
+
+dig
+~~~~
+
+.. code-block:: bash
+
+    $ dig google.com
+
+    ; <<>> DiG 9.8.3-P1 <<>> google.com
+    ;; global options: +cmd
+    ;; Got answer:
+    ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 34606
+    ;; flags: qr rd ra; QUERY: 1, ANSWER: 6, AUTHORITY: 0, ADDITIONAL: 0
+
+    ;; QUESTION SECTION:
+    ;google.com.            IN  A
+
+    ;; ANSWER SECTION:
+    google.com.     47  IN  A   173.194.72.100
+    google.com.     47  IN  A   173.194.72.138
+    google.com.     47  IN  A   173.194.72.102
+    google.com.     47  IN  A   173.194.72.113
+    google.com.     47  IN  A   173.194.72.101
+    google.com.     47  IN  A   173.194.72.139
+
+    ;; Query time: 7 msec
+    ;; SERVER: 192.168.1.1#53(192.168.1.1)
+    ;; WHEN: Mon Apr  4 20:05:37 2016
+    ;; MSG SIZE  rcvd: 124
+
+whois
+~~~~~
+
+.. code-block:: bash
+
+    $ whois google.com
+
+avahi-browse
+~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+    # browse local service(service discovery)
+    $ avahi-browse -a
+
+    # resolve local DNS
+    $ avai-browse -ar
+
+    $ browse local domain service
+    $ avahi-browse -d local _workstation._tcp
+
+avahi-resolve
+~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+    # resolve local machines
+    $ avahi-resolve -n machine.local
+
+dns-sd
+~~~~~~~
+
+only on Mac
+
+===========  =============================================
+  option      description
+===========  =============================================
+  -B          browse for instances of service
+  -q          look up any DNS name, resource record type
+===========  =============================================
+
+.. code-block:: bash
+
+    # Format: dns-sd -B type domain
+    $ dns-sd -B _smb._tcp
+
+    # Format: dns-sd -q name rrtype rrclass
+    $ dns-sd -q machine.local
+    $ dns-sd -q www.google.com
