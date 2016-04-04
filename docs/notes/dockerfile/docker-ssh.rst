@@ -1,6 +1,3 @@
-Dockerfile collections
-======================
-
 SSH daemon service 
 ------------------
 

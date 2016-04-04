@@ -72,7 +72,7 @@ Run a background task
 ``docker run`` port forwarding
 ------------------------------
 
-.. code-block:: console
+.. code-block:: bash
 
     # -P  Publish all exposed ports to random ports
     $ docker run -d -P ${image} ${cmd}
@@ -107,8 +107,7 @@ Run a background task
     $ docker run -it python /bin/bash
     root@6bf742506ff2:/# pip install flask
     $ docker ps      # check container which you want to commit
-    $ docker commit -m "Inst flask" -a "fly"\
-    >  6bf742506ff2 flask/python:v1
+    $ docker commit -m "Inst flask" -a "fly" 6bf742506ff2 flask/python:v1
     $ docker images  # check images
 
 ================   ==============

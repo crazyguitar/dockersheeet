@@ -6,17 +6,7 @@
 Welcome to dockersheeet's documentation!
 ========================================
 
-Contents:
-
-.. toctree::
-   :maxdepth: 2
-
-   notes/docker-basic
-   notes/docker-compose
-   notes/docker-files
-   notes/network-commoncli
-   notes/docker-network
-
+.. include:: contents.rst.inc
 
 Indices and tables
 ==================
