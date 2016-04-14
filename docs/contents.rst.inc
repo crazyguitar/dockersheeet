@@ -17,3 +17,11 @@ Dockerfile Examples
 
    notes/dockerfile/docker-ssh
    notes/dockerfile/docker-smb
+
+Run Service on Docker
+======================
+
+.. toctree::
+   :maxdepth: 2
+
+   notes/services/gitlab
