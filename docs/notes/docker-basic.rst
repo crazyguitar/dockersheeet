@@ -201,3 +201,33 @@ Remove an image
 .. code-block:: console
 
     $ docker load -i pyimg.tar.gz
+
+
+``docker volume`` manipulate data volume
+-----------------------------------------
+
+create a data volume on host
+
+.. code-block:: bash
+
+    $ docker volume create --name data-volume
+
+display all docker data volumes on host
+
+.. code-block:: bash
+
+    $ docker volume ls
+    DRIVER              VOLUME NAME
+    local               20b0790bb1df5a6e59b1b8ded1bc7b5f9a24625e057595427e9149cee8278d30
+
+share volume with other container (``--volumes-from``)
+
+.. code-block:: bash
+
+    $ docker run -d -v /var/jenkins_home                \
+                 --name jenkins-data                    \
+                 --entrypoint /bin/echo jenkins
+    $ # share /var/jenkins_home with "jenkins" container
+    $ docker run -d --name jenkins                      \
+                 -p 8080:8080 -p 50000:50000            \
+                 --volumes-from jenkins-data jenkins
