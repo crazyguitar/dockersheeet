@@ -8,6 +8,7 @@ Docker Cheat Sheets
    notes/docker-compose
    notes/network-commoncli
    notes/docker-network
+   notes/docker-swarm
 
 Dockerfile Examples
 ====================
